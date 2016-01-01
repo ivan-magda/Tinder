@@ -12,16 +12,40 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    //--------------------------------------
+    // MARK: - UIApplicationDelegate
+    //--------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         Parse.setApplicationId("pw2Ljs3N97ogh28UZwRv9pTJR2pfQTc4pDCulhx3", clientKey: "M1NwyCzJDyuSQS7E4e5nYOpGE4RKh1VR0ChULuix")
         
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
-        return true
+        if application.applicationState != UIApplicationState.Background {
+            // Track an app open here if we launch with a push, unless
+            // "content_available" was used to trigger a background push (introduced in iOS 7).
+            // In that case, we skip tracking here to avoid double counting the app-open.
+            
+            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
+            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            var noPushPayload = false
+            if let options = launchOptions {
+                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil
+            }
+            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+            }
+        }
+        
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+            let userNotificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -50,7 +74,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
+    
+    //--------------------------------------
+    // MARK: Push Notifications
+    //--------------------------------------
 
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // Store the deviceToken in the current installation and save it to Parse.
+        let currentInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.channels = [""]
+        currentInstallation.saveInBackground()
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        if error.code == 3010 {
+            print("Push notifications are not supported in the iOS Simulator.")
+        } else {
+            print("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
+        }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
+        if application.applicationState == UIApplicationState.Inactive {
+            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+        }
+    }
 
 }
 
