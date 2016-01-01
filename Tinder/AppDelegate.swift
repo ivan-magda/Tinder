@@ -8,6 +8,9 @@
 
 import UIKit
 
+private let parseApplicationId = "pw2Ljs3N97ogh28UZwRv9pTJR2pfQTc4pDCulhx3"
+private let parseClientKey = "M1NwyCzJDyuSQS7E4e5nYOpGE4RKh1VR0ChULuix"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Parse.setApplicationId("pw2Ljs3N97ogh28UZwRv9pTJR2pfQTc4pDCulhx3", clientKey: "M1NwyCzJDyuSQS7E4e5nYOpGE4RKh1VR0ChULuix")
+        Parse.setApplicationId(parseApplicationId, clientKey: parseClientKey)
         
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         

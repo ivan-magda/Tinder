@@ -14,13 +14,136 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLo-G7-aKe">
+                                <rect key="frame" x="72" y="267" width="177" height="34"/>
+                                <state key="normal" title="Sign in with Facebook">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="login" destination="BYZ-38-t0r" eventType="touchUpInside" id="aR8-nL-4X3"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tinder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSt-eb-E5e">
+                                <rect key="frame" x="111" y="36" width="99" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FLo-G7-aKe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="60g-8V-VXF"/>
+                            <constraint firstItem="SSt-eb-E5e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="CBb-Hm-nLz"/>
+                            <constraint firstItem="SSt-eb-E5e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RqO-Bg-RNA"/>
+                            <constraint firstItem="FLo-G7-aKe" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="VAC-zc-zeV"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="f8r-YJ-a7l" kind="show" identifier="showSignin" id="ayH-ro-xu7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="c8h-QE-pUM">
+            <objects>
+                <viewController id="f8r-YJ-a7l" customClass="SignUpViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hE1-hH-wvN"/>
+                        <viewControllerLayoutGuide type="bottom" id="fVh-iJ-W8Q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h4r-ff-HGR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oa4-YB-R5b">
+                                <rect key="frame" x="102" y="28" width="117" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nRs-9p-lOt">
+                                <rect key="frame" x="40" y="80" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="FMB-XX-lLl"/>
+                                    <constraint firstAttribute="width" constant="240" id="Ru1-Dd-QXJ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm interested in..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kC-tP-px4">
+                                <rect key="frame" x="92" y="336" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Women" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mr0-gR-Inq">
+                                <rect key="frame" x="193" y="378" width="87" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="sDy-Zw-tel"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sDk-Vf-GCY">
+                                <rect key="frame" x="136" y="373" width="51" height="31"/>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYP-O2-uof">
+                                <rect key="frame" x="128" y="518" width="64" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUp:" destination="f8r-YJ-a7l" eventType="touchUpInside" id="uxJ-QA-VCs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Men" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tae-5Q-LAy">
+                                <rect key="frame" x="40" y="378" width="88" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ZEj-ge-TSd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tae-5Q-LAy" firstAttribute="centerY" secondItem="sDk-Vf-GCY" secondAttribute="centerY" id="9vW-WJ-m7B"/>
+                            <constraint firstItem="nRs-9p-lOt" firstAttribute="top" secondItem="Oa4-YB-R5b" secondAttribute="bottom" constant="16" id="Byz-b0-KTM"/>
+                            <constraint firstAttribute="trailing" secondItem="Mr0-gR-Inq" secondAttribute="trailing" constant="40" id="FTl-s3-1fF"/>
+                            <constraint firstItem="fVh-iJ-W8Q" firstAttribute="top" secondItem="vYP-O2-uof" secondAttribute="bottom" constant="16" id="HCy-Do-mND"/>
+                            <constraint firstItem="sDk-Vf-GCY" firstAttribute="leading" secondItem="tae-5Q-LAy" secondAttribute="trailing" constant="8" symbolic="YES" id="Ji9-Wo-jIz"/>
+                            <constraint firstItem="Oa4-YB-R5b" firstAttribute="top" secondItem="hE1-hH-wvN" secondAttribute="bottom" constant="8" symbolic="YES" id="NCT-EX-QIj"/>
+                            <constraint firstItem="nRs-9p-lOt" firstAttribute="centerX" secondItem="h4r-ff-HGR" secondAttribute="centerX" id="PP6-D2-3rY"/>
+                            <constraint firstItem="tae-5Q-LAy" firstAttribute="baseline" secondItem="nRs-9p-lOt" secondAttribute="baseline" id="X5O-Gx-cah"/>
+                            <constraint firstItem="tae-5Q-LAy" firstAttribute="leading" secondItem="h4r-ff-HGR" secondAttribute="leading" constant="40" id="azo-ig-7b7"/>
+                            <constraint firstItem="Mr0-gR-Inq" firstAttribute="centerY" secondItem="sDk-Vf-GCY" secondAttribute="centerY" id="dJm-P3-idS"/>
+                            <constraint firstItem="0kC-tP-px4" firstAttribute="top" secondItem="nRs-9p-lOt" secondAttribute="bottom" constant="16" id="eGj-fJ-GfN"/>
+                            <constraint firstItem="0kC-tP-px4" firstAttribute="centerX" secondItem="h4r-ff-HGR" secondAttribute="centerX" id="mfJ-W6-xxO"/>
+                            <constraint firstItem="Mr0-gR-Inq" firstAttribute="leading" secondItem="sDk-Vf-GCY" secondAttribute="trailing" constant="8" symbolic="YES" id="nCl-oB-aV3"/>
+                            <constraint firstItem="vYP-O2-uof" firstAttribute="centerX" secondItem="h4r-ff-HGR" secondAttribute="centerX" id="pSV-z7-SxF"/>
+                            <constraint firstItem="Oa4-YB-R5b" firstAttribute="centerX" secondItem="h4r-ff-HGR" secondAttribute="centerX" id="rkm-7j-dff"/>
+                            <constraint firstItem="sDk-Vf-GCY" firstAttribute="top" secondItem="0kC-tP-px4" secondAttribute="bottom" constant="16" id="tbk-ry-XjH"/>
+                            <constraint firstItem="sDk-Vf-GCY" firstAttribute="centerX" secondItem="h4r-ff-HGR" secondAttribute="centerX" id="yPO-Yn-EXK"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="X5O-Gx-cah"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="interestedInWomen" destination="sDk-Vf-GCY" id="Wse-cW-d9h"/>
+                        <outlet property="userImage" destination="nRs-9p-lOt" id="FYG-WG-Gv6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N8O-Ps-ObE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="765" y="224"/>
         </scene>
     </scenes>
 </document>

@@ -9,29 +9,27 @@
 import UIKit
 
 class ViewController: UIViewController {
+    // MARK: - Properties
+    
+    private let signinSegueIdentifier = "showSignin"
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        let push = PFPush()
-        push.setChannel("Giants")
-        push.setMessage("The Giants just scored!")
-        push.sendPushInBackground()
-        
-        let loginButton = UIButton()
-        loginButton.setTitle("Log In with Facebook", forState: .Normal)
-        loginButton.setTitleColor(self.view.tintColor, forState: .Normal)
-        loginButton.sizeToFit()
-        loginButton.center = self.view.center
-        loginButton.addTarget(self, action: Selector("login"), forControlEvents: .TouchUpInside)
-        
-        self.view.addSubview(loginButton)
+        if let _ = PFUser.currentUser()?.username {
+            performSegueWithIdentifier(signinSegueIdentifier, sender: self)
+        }
     }
     
     // MARK: - Log In
     
-    func login() {
+    @IBAction func login() {
         print("Login button pressed")
         
         let permission = ["public_profile"]
@@ -43,13 +41,13 @@ class ViewController: UIViewController {
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     let alert = UIAlertController(title: "", message: "You have successfully loged in", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: { action in
+                        self.performSegueWithIdentifier(self.signinSegueIdentifier, sender: self)
+                    }))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
         }
     }
-    
-    
 }
 
