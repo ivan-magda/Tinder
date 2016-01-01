@@ -23,7 +23,7 @@
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="login" destination="BYZ-38-t0r" eventType="touchUpInside" id="aR8-nL-4X3"/>
+                                    <action selector="signIn" destination="BYZ-38-t0r" eventType="touchUpInside" id="hN5-BL-TgN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tinder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSt-eb-E5e">
@@ -44,6 +44,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="f8r-YJ-a7l" kind="show" identifier="showSignin" id="ayH-ro-xu7"/>
+                        <segue destination="xVC-Xy-m56" kind="presentation" identifier="logUserIn" id="kH5-wF-nyT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -143,7 +144,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8O-Ps-ObE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="765" y="224"/>
+            <point key="canvasLocation" x="809" y="92"/>
+        </scene>
+        <!--Swiping View Controller-->
+        <scene sceneID="G6a-V7-p73">
+            <objects>
+                <viewController id="mcP-F8-Wc4" customClass="SwipingViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ndI-j3-u5C"/>
+                        <viewControllerLayoutGuide type="bottom" id="kWT-KF-Dtn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CVg-Bw-epn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eaK-pu-sVz">
+                                <rect key="frame" x="40" y="124" width="240" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="fjF-33-ua0"/>
+                                    <constraint firstAttribute="width" constant="240" id="v4O-aE-J3Y"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to reject, right to accept" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvW-8h-V24">
+                                <rect key="frame" x="28" y="531" width="264" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LvW-8h-V24" firstAttribute="centerX" secondItem="CVg-Bw-epn" secondAttribute="centerX" id="0jW-7d-epY"/>
+                            <constraint firstItem="eaK-pu-sVz" firstAttribute="top" secondItem="ndI-j3-u5C" secondAttribute="bottom" constant="16" id="5N6-oD-P07"/>
+                            <constraint firstItem="eaK-pu-sVz" firstAttribute="centerX" secondItem="CVg-Bw-epn" secondAttribute="centerX" id="E8S-2O-BMX"/>
+                            <constraint firstItem="kWT-KF-Dtn" firstAttribute="top" secondItem="LvW-8h-V24" secondAttribute="bottom" constant="16" id="FBP-SS-LjB"/>
+                            <constraint firstItem="eaK-pu-sVz" firstAttribute="centerY" secondItem="CVg-Bw-epn" secondAttribute="centerY" id="eeO-PV-c9b"/>
+                            <constraint firstItem="LvW-8h-V24" firstAttribute="top" secondItem="eaK-pu-sVz" secondAttribute="bottom" constant="16" id="iyi-Yg-u7J"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5N6-oD-P07"/>
+                                <exclude reference="iyi-Yg-u7J"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xdh-ZK-iEG">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="C8d-71-yP0">
+                            <connections>
+                                <action selector="logOut:" destination="mcP-F8-Wc4" id="LDZ-Qg-F2k"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="infoLabel" destination="LvW-8h-V24" id="Bbb-vW-IPh"/>
+                        <outlet property="userImageView" destination="eaK-pu-sVz" id="teG-4F-hZR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q3k-oO-PX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1199" y="719"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="28D-18-G9a">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xVC-Xy-m56" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="K3x-kD-uBF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mcP-F8-Wc4" kind="relationship" relationship="rootViewController" id="Ur0-p7-orq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uth-6c-7ul" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="809" y="719"/>
         </scene>
     </scenes>
 </document>

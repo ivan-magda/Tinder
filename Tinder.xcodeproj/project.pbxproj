@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		75BC8EAE1C364AAF00CA84F9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC8EAD1C364AAE00CA84F9 /* SignUpViewController.swift */; };
+		75BF892B1C36C6C300B12D63 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF892A1C36C6C300B12D63 /* SwipingViewController.swift */; };
 		75CCDBE11C33E81200919B7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDBE01C33E81200919B7C /* AppDelegate.swift */; };
 		75CCDBE31C33E81200919B7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDBE21C33E81200919B7C /* ViewController.swift */; };
 		75CCDBE61C33E81200919B7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75CCDBE41C33E81200919B7C /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		75BC8EAD1C364AAE00CA84F9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		75BF892A1C36C6C300B12D63 /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		75CCDBDD1C33E81200919B7C /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CCDBE01C33E81200919B7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75CCDBE21C33E81200919B7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				75CCDBE01C33E81200919B7C /* AppDelegate.swift */,
 				75CCDBE21C33E81200919B7C /* ViewController.swift */,
 				75BC8EAD1C364AAE00CA84F9 /* SignUpViewController.swift */,
+				75BF892A1C36C6C300B12D63 /* SwipingViewController.swift */,
 				75CCDBE41C33E81200919B7C /* Main.storyboard */,
 				75CCDBE71C33E81200919B7C /* Assets.xcassets */,
 				75CCDBE91C33E81200919B7C /* LaunchScreen.storyboard */,
@@ -214,6 +217,7 @@
 			files = (
 				75BC8EAE1C364AAF00CA84F9 /* SignUpViewController.swift in Sources */,
 				75CCDBE31C33E81200919B7C /* ViewController.swift in Sources */,
+				75BF892B1C36C6C300B12D63 /* SwipingViewController.swift in Sources */,
 				75CCDBE11C33E81200919B7C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

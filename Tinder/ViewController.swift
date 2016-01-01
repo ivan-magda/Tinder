@@ -9,9 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-    // MARK: - Properties
+    // MARK: - Types 
     
-    private let signinSegueIdentifier = "showSignin"
+    private enum SegueIdentifiers: String {
+        case showSignin
+        case logUserIn
+    }
+    
+    // MARK: - Properties
     
     // MARK: - View Life Cycle
     
@@ -23,29 +28,29 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if let _ = PFUser.currentUser()?.username {
-            performSegueWithIdentifier(signinSegueIdentifier, sender: self)
+            performSegueForSingedUser(PFUser.currentUser()!)
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    private func performSegueForSingedUser(user: PFUser) {
+        if let _ = user[UserFieldKeys.interestedInWomen.rawValue] {
+            self.performSegueWithIdentifier(SegueIdentifiers.logUserIn.rawValue, sender: self)
+        } else {
+            self.performSegueWithIdentifier(SegueIdentifiers.showSignin.rawValue, sender: self)
         }
     }
     
     // MARK: - Log In
     
-    @IBAction func login() {
-        print("Login button pressed")
-        
+    @IBAction func signIn() {
         let permission = ["public_profile"]
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permission) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let user = user {
-                print(user)
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    let alert = UIAlertController(title: "", message: "You have successfully loged in", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: { action in
-                        self.performSegueWithIdentifier(self.signinSegueIdentifier, sender: self)
-                    }))
-                    self.presentViewController(alert, animated: true, completion: nil)
-                }
+                self.performSegueForSingedUser(user)
             }
         }
     }

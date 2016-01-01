@@ -8,17 +8,18 @@
 
 import UIKit
 
+enum UserFieldKeys: String {
+    case gender
+    case name
+    case id
+    case image
+    case interestedInWomen
+    case accepted
+    case rejected
+    case objectId
+}
+
 class SignUpViewController: UIViewController {
-    // MARK: - Types
-    
-    private enum FieldKeys: String {
-        case gender
-        case name
-        case id
-        case image
-        case interestedInWomen
-    }
-    
     // MARK: - Properties
     
     @IBOutlet weak var userImage: UIImageView!
@@ -29,7 +30,13 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "\(FieldKeys.id.rawValue), \(FieldKeys.name.rawValue), \(FieldKeys.gender.rawValue)"])
+        loadUserDataFromFacebook()
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func loadUserDataFromFacebook() {
+        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "\(UserFieldKeys.id.rawValue), \(UserFieldKeys.name.rawValue), \(UserFieldKeys.gender.rawValue)"])
         graphRequest.startWithCompletionHandler() { (connection, result, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -37,8 +44,8 @@ class SignUpViewController: UIViewController {
                 print(result)
                 
                 if let user = PFUser.currentUser() {
-                    user[FieldKeys.gender.rawValue] = result[FieldKeys.gender.rawValue]
-                    user[FieldKeys.name.rawValue] = result[FieldKeys.name.rawValue]
+                    user[UserFieldKeys.gender.rawValue] = result[UserFieldKeys.gender.rawValue]
+                    user[UserFieldKeys.name.rawValue] = result[UserFieldKeys.name.rawValue]
                     
                     user.saveInBackgroundWithBlock() { (succeeded, error) in
                         if let error = error {
@@ -46,15 +53,16 @@ class SignUpViewController: UIViewController {
                         } else {
                             print("User info saved.")
                             
-                            // Get user profile pic
+                            // Get user profile picture.
                             let userId = result["id"] as! String
                             let facebookProfileImageURL = NSURL(string: "https://graph.facebook.com/\(userId)/picture?type=large")
                             
-                            if let facebookProfileImageURL = facebookProfileImageURL {
+                            if let facebookProfilePictureURL = facebookProfileImageURL {
                                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                                 
-                                let task = NSURLSession.sharedSession().dataTaskWithURL(facebookProfileImageURL) { (data, response, error) in
+                                let task = NSURLSession.sharedSession().dataTaskWithURL(facebookProfilePictureURL) { (data, response, error) in
                                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                    
                                     if let error = error {
                                         print(error.localizedDescription)
                                     } else if let data = data {
@@ -64,7 +72,7 @@ class SignUpViewController: UIViewController {
                                             
                                             // Save user picture to parse.
                                             let imageFile = PFFile(data: data)
-                                            user[FieldKeys.image.rawValue] = imageFile
+                                            user[UserFieldKeys.image.rawValue] = imageFile
                                             user.saveInBackground()
                                         }
                                     }
@@ -82,7 +90,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUp(sender: AnyObject) {
         if let user = PFUser.currentUser() {
-            user[FieldKeys.interestedInWomen.rawValue] = self.interestedInWomen.on
+            user[UserFieldKeys.interestedInWomen.rawValue] = self.interestedInWomen.on
             user.saveInBackground()
         }
     }
