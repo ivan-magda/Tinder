@@ -21,15 +21,38 @@ class SwipingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateCurrentLocation()
+        
         addSwipeGestureRecognizer()
         updateUserImage()
     }
     
     // MARK: - Helper Methods
     
+    private func updateCurrentLocation() {
+        PFGeoPoint.geoPointForCurrentLocationInBackground() { (geoPoint, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let geoPoint = geoPoint {
+                if let user = PFUser.currentUser() {
+                    user[UserFieldKeys.location.rawValue] = geoPoint
+                    user.saveInBackground()
+                }
+            }
+        }
+    }
+    
     private func updateUserImage() {
         let query = PFUser.query()!
         
+        // Users that near with you.
+        if let location = PFUser.currentUser()?[UserFieldKeys.location.rawValue] as? PFGeoPoint {
+            let latitude = location.latitude
+            let longitude = location.longitude
+            query.whereKey(UserFieldKeys.location.rawValue, withinGeoBoxFromSouthwest: PFGeoPoint(latitude: latitude - 1, longitude: longitude - 1), toNortheast: PFGeoPoint(latitude: latitude + 1, longitude: longitude + 1))
+        }
+        
+        // Users that interested in.
         var interestedIn = "male"
         if let interest = PFUser.currentUser()?[UserFieldKeys.interestedInWomen.rawValue] as? Bool where interest == true {
             interestedIn = "female"
@@ -43,6 +66,7 @@ class SwipingViewController: UIViewController {
         query.whereKey(UserFieldKeys.gender.rawValue, equalTo: interestedIn)
         query.whereKey(UserFieldKeys.interestedInWomen.rawValue, equalTo: isFemale)
         
+        // Ignore accepted or rejected users.
         var ignoredUsers = [""]
         if let acceptedUsers = PFUser.currentUser()?[UserFieldKeys.accepted.rawValue] {
             ignoredUsers.appendContentsOf(acceptedUsers as! Array)
@@ -55,6 +79,7 @@ class SwipingViewController: UIViewController {
         query.whereKey(UserFieldKeys.objectId.rawValue, notContainedIn: ignoredUsers)
         query.limit = 1
         
+        // Find users.
         query.findObjectsInBackgroundWithBlock() { (users, error) in
             if let error = error {
                 print(error.localizedDescription)

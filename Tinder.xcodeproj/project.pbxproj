@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		754F73551C379D7A006E4866 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754F73541C379D7A006E4866 /* ContactsTableViewController.swift */; };
+		754F735C1C37A926006E4866 /* ContactCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 754F73561C37A926006E4866 /* ContactCard.png */; };
+		754F735D1C37A926006E4866 /* ContactCard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754F73571C37A926006E4866 /* ContactCard@2x.png */; };
+		754F735E1C37A926006E4866 /* ContactCard@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754F73581C37A926006E4866 /* ContactCard@3x.png */; };
+		754F735F1C37A926006E4866 /* Exit.png in Resources */ = {isa = PBXBuildFile; fileRef = 754F73591C37A926006E4866 /* Exit.png */; };
+		754F73601C37A926006E4866 /* Exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754F735A1C37A926006E4866 /* Exit@2x.png */; };
+		754F73611C37A926006E4866 /* Exit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754F735B1C37A926006E4866 /* Exit@3x.png */; };
 		75BC8EAE1C364AAF00CA84F9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC8EAD1C364AAE00CA84F9 /* SignUpViewController.swift */; };
 		75BF892B1C36C6C300B12D63 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF892A1C36C6C300B12D63 /* SwipingViewController.swift */; };
 		75CCDBE11C33E81200919B7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDBE01C33E81200919B7C /* AppDelegate.swift */; };
@@ -33,6 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		754F73541C379D7A006E4866 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
+		754F73561C37A926006E4866 /* ContactCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContactCard.png; sourceTree = "<group>"; };
+		754F73571C37A926006E4866 /* ContactCard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ContactCard@2x.png"; sourceTree = "<group>"; };
+		754F73581C37A926006E4866 /* ContactCard@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ContactCard@3x.png"; sourceTree = "<group>"; };
+		754F73591C37A926006E4866 /* Exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Exit.png; sourceTree = "<group>"; };
+		754F735A1C37A926006E4866 /* Exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Exit@2x.png"; sourceTree = "<group>"; };
+		754F735B1C37A926006E4866 /* Exit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Exit@3x.png"; sourceTree = "<group>"; };
 		75BC8EAD1C364AAE00CA84F9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		75BF892A1C36C6C300B12D63 /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		75CCDBDD1C33E81200919B7C /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +102,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		754F73621C37A92C006E4866 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				754F73631C37A937006E4866 /* Navigation Bar */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		754F73631C37A937006E4866 /* Navigation Bar */ = {
+			isa = PBXGroup;
+			children = (
+				754F73561C37A926006E4866 /* ContactCard.png */,
+				754F73571C37A926006E4866 /* ContactCard@2x.png */,
+				754F73581C37A926006E4866 /* ContactCard@3x.png */,
+				754F73591C37A926006E4866 /* Exit.png */,
+				754F735A1C37A926006E4866 /* Exit@2x.png */,
+				754F735B1C37A926006E4866 /* Exit@3x.png */,
+			);
+			name = "Navigation Bar";
+			sourceTree = "<group>";
+		};
 		75CCDBD41C33E81200919B7C = {
 			isa = PBXGroup;
 			children = (
@@ -111,11 +146,13 @@
 				75CCDBE21C33E81200919B7C /* ViewController.swift */,
 				75BC8EAD1C364AAE00CA84F9 /* SignUpViewController.swift */,
 				75BF892A1C36C6C300B12D63 /* SwipingViewController.swift */,
+				754F73541C379D7A006E4866 /* ContactsTableViewController.swift */,
 				75CCDBE41C33E81200919B7C /* Main.storyboard */,
 				75CCDBE71C33E81200919B7C /* Assets.xcassets */,
 				75CCDBE91C33E81200919B7C /* LaunchScreen.storyboard */,
 				75CCDBEC1C33E81200919B7C /* Info.plist */,
 				75CCDBF81C33E89A00919B7C /* Tinder-Bridging-Header.h */,
+				754F73621C37A92C006E4866 /* Resources */,
 				75CCDC0F1C33EAB800919B7C /* Frameworks */,
 			);
 			path = Tinder;
@@ -202,8 +239,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				754F735C1C37A926006E4866 /* ContactCard.png in Resources */,
 				75CCDBEB1C33E81200919B7C /* LaunchScreen.storyboard in Resources */,
+				754F73601C37A926006E4866 /* Exit@2x.png in Resources */,
+				754F735F1C37A926006E4866 /* Exit.png in Resources */,
 				75CCDBE81C33E81200919B7C /* Assets.xcassets in Resources */,
+				754F735D1C37A926006E4866 /* ContactCard@2x.png in Resources */,
+				754F73611C37A926006E4866 /* Exit@3x.png in Resources */,
+				754F735E1C37A926006E4866 /* ContactCard@3x.png in Resources */,
 				75CCDBE61C33E81200919B7C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +260,7 @@
 			files = (
 				75BC8EAE1C364AAF00CA84F9 /* SignUpViewController.swift in Sources */,
 				75CCDBE31C33E81200919B7C /* ViewController.swift in Sources */,
+				754F73551C379D7A006E4866 /* ContactsTableViewController.swift in Sources */,
 				75BF892B1C36C6C300B12D63 /* SwipingViewController.swift in Sources */,
 				75CCDBE11C33E81200919B7C /* AppDelegate.swift in Sources */,
 			);

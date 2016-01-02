@@ -17,6 +17,8 @@ enum UserFieldKeys: String {
     case accepted
     case rejected
     case objectId
+    case location
+    case username
 }
 
 class SignUpViewController: UIViewController {

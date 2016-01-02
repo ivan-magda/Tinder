@@ -146,7 +146,7 @@
             </objects>
             <point key="canvasLocation" x="809" y="92"/>
         </scene>
-        <!--Swiping View Controller-->
+        <!--Tinder-->
         <scene sceneID="G6a-V7-p73">
             <objects>
                 <viewController id="mcP-F8-Wc4" customClass="SwipingViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
@@ -188,10 +188,15 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="Xdh-ZK-iEG">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="C8d-71-yP0">
+                    <navigationItem key="navigationItem" title="Tinder" id="Xdh-ZK-iEG">
+                        <barButtonItem key="leftBarButtonItem" image="Exit.png" id="C8d-71-yP0">
                             <connections>
                                 <action selector="logOut:" destination="mcP-F8-Wc4" id="LDZ-Qg-F2k"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="ContactCard.png" id="7wD-rs-4PY">
+                            <connections>
+                                <segue destination="KrL-bG-JXH" kind="show" identifier="contacts" id="cDo-1c-uGR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -203,6 +208,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3k-oO-PX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1199" y="719"/>
+        </scene>
+        <!--Contacts-->
+        <scene sceneID="dlg-9g-6Hh">
+            <objects>
+                <tableViewController title="Contacts" id="KrL-bG-JXH" customClass="ContactsTableViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="b3O-My-Hyg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ffN-4h-fDr">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ffN-4h-fDr" id="9XG-Wg-g7z">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="KrL-bG-JXH" id="6dc-Wa-Ce9"/>
+                            <outlet property="delegate" destination="KrL-bG-JXH" id="Xdc-WI-OnG"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X7X-VJ-k0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1589" y="719"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="28D-18-G9a">
@@ -223,4 +256,8 @@
             <point key="canvasLocation" x="809" y="719"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ContactCard.png" width="22" height="22"/>
+        <image name="Exit.png" width="22" height="22"/>
+    </resources>
 </document>
