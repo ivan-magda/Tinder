@@ -19,6 +19,7 @@ enum UserFieldKeys: String {
     case objectId
     case location
     case username
+    case email
 }
 
 class SignUpViewController: UIViewController {
@@ -38,7 +39,7 @@ class SignUpViewController: UIViewController {
     // MARK: - Helper Methods
     
     private func loadUserDataFromFacebook() {
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "\(UserFieldKeys.id.rawValue), \(UserFieldKeys.name.rawValue), \(UserFieldKeys.gender.rawValue)"])
+        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "\(UserFieldKeys.id.rawValue), \(UserFieldKeys.name.rawValue), \(UserFieldKeys.gender.rawValue), \(UserFieldKeys.email.rawValue)"])
         graphRequest.startWithCompletionHandler() { (connection, result, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -48,6 +49,7 @@ class SignUpViewController: UIViewController {
                 if let user = PFUser.currentUser() {
                     user[UserFieldKeys.gender.rawValue] = result[UserFieldKeys.gender.rawValue]
                     user[UserFieldKeys.name.rawValue] = result[UserFieldKeys.name.rawValue]
+                    user.email = result[UserFieldKeys.email.rawValue] as? String
                     
                     user.saveInBackgroundWithBlock() { (succeeded, error) in
                         if let error = error {

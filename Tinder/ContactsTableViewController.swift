@@ -12,6 +12,7 @@ class ContactsTableViewController: UITableViewController {
     // MARK: - Properties
     
     private var usernames = [String]()
+    private var emails = [String]()
     private var images = [UIImage]()
     
     // MARK: - View Life Cycle
@@ -19,6 +20,12 @@ class ContactsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadContacts()
+    }
+    
+    // MARK: - Helpers Methods
+    
+    private func loadContacts() {
         if let acceptedUsers = PFUser.currentUser()?[UserFieldKeys.accepted.rawValue] as? [String] {
             let query = PFUser.query()!
             query.whereKey(UserFieldKeys.accepted.rawValue, equalTo: PFUser.currentUser()!.objectId!)
@@ -31,6 +38,7 @@ class ContactsTableViewController: UITableViewController {
                 } else if let users = users as? [PFUser] where users.count > 0 {
                     for user in users {
                         self.usernames.append(user.username!)
+                        self.emails.append(user.email!)
                         
                         if let imageFile = user[UserFieldKeys.image.rawValue] as? PFFile {
                             imageFile.getDataInBackgroundWithBlock() { (data, error) in
@@ -47,7 +55,7 @@ class ContactsTableViewController: UITableViewController {
                     }
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -63,6 +71,7 @@ class ContactsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
         cell.textLabel?.text = usernames[indexPath.row]
+        cell.detailTextLabel?.text = emails[indexPath.row]
         
         if indexPath.row < images.count {
             cell.imageView?.image = images[indexPath.row]
@@ -75,5 +84,11 @@ class ContactsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        // Send an email to selected user.
+        let url = NSURL(string: "mailto:\(emails[indexPath.row])")
+        if let url = url {
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
 }

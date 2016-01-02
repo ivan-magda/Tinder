@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     // MARK: - Log In
     
     @IBAction func signIn() {
-        let permission = ["public_profile"]
+        let permission = ["public_profile", "email"]
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permission) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
